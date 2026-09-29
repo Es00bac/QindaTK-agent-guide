@@ -3,9 +3,12 @@
 // Nothing from the credential is written to disk, URLs, or persistent Git config.
 import {createInterface} from 'node:readline';
 import {spawn} from 'node:child_process';
+if(process.stdin.isTTY)process.stdin.setRawMode(true);
 const reader=createInterface({input:process.stdin,terminal:false});
+process.stdout.write('Ready for ephemeral source credential.\n');
 const line=await new Promise(resolve=>reader.once('line',resolve));
 reader.close();process.stdin.pause();
+if(process.stdin.isTTY)process.stdin.setRawMode(false);
 const credential=JSON.parse(line);
 if(credential.auth_mode!=='http_extra_header'||!credential.token||!/^https:\/\//.test(credential.remote_url)||!/^[A-Za-z0-9_./-]+$/.test(credential.branch))throw new Error('Unsupported source credential');
 const environment={...process.env,GIT_TERMINAL_PROMPT:'0',GIT_CONFIG_COUNT:'2',GIT_CONFIG_KEY_0:'http.extraHeader',GIT_CONFIG_VALUE_0:`Authorization: Bearer ${credential.token}`,GIT_CONFIG_KEY_1:'credential.helper',GIT_CONFIG_VALUE_1:''};
