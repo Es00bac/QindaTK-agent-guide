@@ -1,0 +1,161 @@
+<!doctype html>
+<!-- SPDX-License-Identifier: LGPL-3.0-or-later -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10151e">
+  <meta name="description" content="Try an AI partnership in QindaOffice, hear the explanation, and explore the bridge from a native application to an agent.">
+  <title>Your Office, With an AI Partner · QindaTK</title>
+  <link rel="icon" href="assets/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="workspace.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the walkthrough</a>
+<header class="masthead">
+  <a class="brand" href="#try"><span class="brand-mark">Q</span><span>QINDA<span class="brand-divider"> / </span><b>PARTNER LAB</b></span></a>
+  <span class="masthead-caption">An interactive field guide</span>
+  <a class="quiet-link" href="#roadmap">How close are we? <span aria-hidden="true">↗</span></a>
+</header>
+<div class="site-layout">
+<aside class="guide-rail" aria-label="Walkthrough chapters">
+  <p class="eyebrow">THE WALKTHROUGH</p>
+  <nav id="chapter-nav">
+    <a href="#try" data-chapter="try" class="active"><span>01</span> Try the partnership</a>
+    <a href="#read" data-chapter="read"><span>02</span> What the agent sees</a>
+    <a href="#today" data-chapter="today"><span>03</span> Your office today</a>
+    <a href="#access" data-chapter="access"><span>04</span> Built-in or terminal</a>
+    <a href="#workflow" data-chapter="workflow"><span>05</span> A day together</a>
+    <a href="#architecture" data-chapter="architecture"><span>06</span> How it connects</a>
+    <a href="#control" data-chapter="control"><span>07</span> You stay in control</a>
+    <a href="#roadmap" data-chapter="roadmap"><span>08</span> The path from here</a>
+  </nav>
+  <div class="rail-note"><span class="status-dot"></span><b>A real foundation.<br>A proposed bridge.</b><p>Existing capabilities and future ideas are marked throughout.</p></div>
+  <a href="#sources" class="rail-source">Evidence &amp; credits ↗</a>
+</aside>
+<main id="main">
+<div class="narration" id="narration">
+  <button id="audio-play" class="audio-play" aria-label="Play chapter narration"><span id="play-icon" aria-hidden="true">▶</span></button>
+  <div class="audio-heading"><span class="eyebrow">LISTEN WITH ELEVENLABS</span><b id="audio-title">01 · Try the partnership</b><span id="audio-voice">Iago · chapter narration</span></div>
+  <div class="audio-progress"><input type="range" id="audio-seek" min="0" max="100" value="0" aria-label="Narration position"><span id="audio-time">0:00 / —</span></div>
+  <label class="speed-label"><span class="sr-only">Narration speed</span><select id="audio-speed"><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+  <button class="icon-button" id="transcript-toggle" aria-expanded="false" aria-controls="transcript">Transcript</button>
+  <audio id="chapter-audio" preload="metadata"></audio>
+  <div id="transcript" class="transcript" hidden></div>
+</div>
+
+<section id="try" class="chapter first-chapter" data-section="try">
+  <div class="chapter-heading"><p class="eyebrow"><span class="chapter-number">01</span> TRY IT FOR YOURSELF</p><span class="pill proposed">Interactive concept</span></div>
+  <div class="hero-copy"><h1>Your office.<br><span>An AI partner.</span></h1>
+  <p class="lead">Ask for a change in ordinary language. Watch your document respond. See exactly what the agent read, what it changed, and how you take it back.</p></div>
+  <div class="lab-intro"><p>Start with a small, real-world question.</p><div class="scenario-tabs" role="tablist" aria-label="Office scenario"><button role="tab" data-app="calc" aria-selected="true">▦ Calc</button><button role="tab" data-app="write" aria-selected="false">¶ Write</button><button role="tab" data-app="show" aria-selected="false">▣ Show</button><button role="tab" data-app="note" aria-selected="false">≡ Note</button></div></div>
+  <div class="scenario-prompt"><span class="prompt-quote" aria-hidden="true">“</span><div><h2 id="task-prompt">Try two lighting packages. Tell me if the budget still fits.</h2><p id="task-context">Signal Garden · fictional event budget · $8,600 spending ceiling</p></div></div>
+  <div class="lab-toolbar"><div class="mode-switch" role="group" aria-label="Agent entry point"><button data-mode="assistant" aria-pressed="true">Built-in assistant</button><button data-mode="terminal" aria-pressed="false">Command line</button></div><label class="edit-grant"><input id="allow-edits" type="checkbox" checked> Allow edits to this document</label></div>
+  <div class="workstation">
+    <div class="office-window"><div class="window-bar"><span class="window-dots" aria-hidden="true">● ● ●</span><b id="window-title">signal-garden-budget.xlsx — QindaCalc</b><span class="window-state">SAMPLE</span></div><div id="office-view" class="office-view"></div><div class="document-status"><span id="selection-status">Budget · B5 selected</span><span id="document-revision">Revision 12</span></div></div>
+    <div class="partner-window"><div class="partner-heading"><span class="partner-avatar" aria-hidden="true">✦</span><div><b id="partner-title">Your AI partner</b><span id="partner-subtitle">Connected to this document</span></div><span class="connection-dot" aria-label="Simulation connected"></span></div><div id="partner-feed" class="partner-feed" aria-live="polite"></div><div id="step-track" class="step-track" aria-label="Workflow progress"></div><div class="partner-actions"><button id="run-scenario" class="primary">Run this scenario <span aria-hidden="true">→</span></button><button id="undo-scenario" class="secondary" disabled>Undo</button></div><div class="lab-utilities"><button id="speak-result" class="text-button" disabled>◖ Hear the outcome</button><button id="reset-scenario" class="text-button">Reset</button></div></div>
+  </div>
+  <details class="inspect-panel"><summary><span>⌘</span> Inspect the agent’s structured view <small>Snapshot, action &amp; receipt</small></summary><div class="inspect-grid"><div><h3>What it can read</h3><pre id="snapshot-view"></pre></div><div><h3>What it actually did</h3><pre id="receipt-view">Run the scenario to see an application-verified receipt.</pre></div></div></details>
+  <p class="simulation-note"><span aria-hidden="true">◈</span> This is a working browser simulation using fictional sample documents. It does not connect to your desktop. The shared agent interface is a proposed extension; the suite’s existing edit operations are the foundation.</p>
+  <div class="takeaway"><b>The important change</b><p>The agent asks the application for meaning and actions. The application performs the edit, recalculates its state, and returns an outcome the agent can explain.</p></div>
+</section>
+
+<section id="read" class="chapter" data-section="read">
+  <p class="eyebrow"><span class="chapter-number">02</span> THE APPLICATION EXPLAINS ITSELF</p>
+  <h2>A screen has a picture.<br>A workflow has meaning.</h2>
+  <p class="section-lead">A spreadsheet is more than visible cells. “What am I looking at?” means knowing the active sheet, selection, formulas, filters, unfinished input, and any dialog blocking the next action.</p>
+  <div class="semantic-lens"><div class="lens-human"><div class="lens-label">YOUR VIEW</div><div class="mini-sheet"><div>Budget</div><div>Lighting and power</div><div class="selected-mini">2</div><div>Planned cost</div><div>$9,882</div><div class="negative">$1,282 above ceiling</div></div><div class="lens-tags"><span>Selected cell: B5</span><span>Active sheet: Budget</span><span>Unsaved changes</span></div></div><div class="lens-arrow" aria-hidden="true">⇄</div><div class="lens-agent"><div class="lens-label">THE AGENT’S VIEW · PROPOSED CONTRACT</div><pre>{
+  "document": "signal-garden-budget",
+  "view": "Budget",
+  "selection": "B5",
+  "revision": 13,
+  "values": {
+    "lighting.quantity": 2,
+    "planned_cost": 9882,
+    "ceiling": 8600
+  },
+  "available_actions": ["set_cells", "undo"]
+}</pre></div></div>
+  <div class="explain-grid"><article><span class="feature-index">01</span><h3>Identify the thing</h3><p>Stable document, view, and object IDs address a cell, text span, slide, or note block even after a window moves. A label is for people; an ID is for reliable targeting.</p></article><article><span class="feature-index">02</span><h3>Describe the current view</h3><p>Include selection, focus, filters, sort order, draft input, validation errors, units, and modal state. A document export alone does not say what your workflow is showing.</p></article><article><span class="feature-index">03</span><h3>Offer meaningful actions</h3><p>Discover “set these cells” or “add speaker notes,” with required inputs and a reason when disabled. The app routes each action through its ordinary editing rules.</p></article><article><span class="feature-index">04</span><h3>Verify the result</h3><p>A completed request returns the new revision, changed targets, values, warnings, and an undo reference. The model can answer from that result instead of guessing that an edit succeeded.</p></article></div>
+  <details class="text-detail"><summary>Why accessibility alone isn’t the whole answer</summary><p>Qt accessibility already gives controls names, roles, state, and actions. QindaTK’s custom views can expose semantic nodes too. That is useful for reading and activating interface elements. An office partnership also needs richer document operations, exact formulas and units, context about the active workflow, and typed results. The proposed service combines those sources; it does not replace accessibility.</p><p>Images, page layout, chart appearance, and drawings can still benefit from vision or a screenshot. Structured state handles the parts the application can describe exactly; visual tools remain available when the question is genuinely visual.</p></details>
+</section>
+
+<section id="today" class="chapter" data-section="today">
+  <div class="chapter-heading"><p class="eyebrow"><span class="chapter-number">03</span> GROUNDED IN YOUR CURRENT SUITE</p><span class="pill existing">Already implemented</span></div>
+  <h2>You already have<br>the beginnings of this.</h2>
+  <p class="section-lead">QindaOffice has assistant panels, document snapshots, addressable edit operations, and undo for AI edits. The next step is to expose those foundations as a consistent live interface for any authorized agent.</p>
+  <div class="real-gallery"><div class="gallery-tabs" role="tablist" aria-label="Real office screenshots"><button data-shot="write" role="tab" aria-selected="true">QindaWrite</button><button data-shot="calc" role="tab" aria-selected="false">QindaCalc</button><button data-shot="show" role="tab" aria-selected="false">QindaShow</button><button data-shot="note" role="tab" aria-selected="false">QindaNote</button></div><figure><img id="real-shot" src="assets/images/office-write.webp" alt="Real QindaWrite window displaying the fictional Signal Garden project brief" width="1440" height="900" loading="lazy"><figcaption id="shot-caption">Real installed QindaWrite, captured with the public Signal Garden sample. This is existing application UI, not a mockup of the proposed bridge.</figcaption></figure></div>
+  <div class="today-grid"><article class="existing-card"><h3><span>✓</span> In the suite today</h3><ul><li>Per-window assistant with selection or document context.</li><li>Claude, Codex, Kimi CLI-backed model providers and compatible HTTP endpoints.</li><li><code>DocumentTools</code>: snapshot, operation guide, apply edits, undo.</li><li>Calc cell edits, Write text edits, Show slide operations, Note block edits.</li><li>Window action IDs and enabled state through <code>ActionModel</code>.</li><li>Jev-style structured decisions in the live-notes pipeline.</li></ul></article><article class="proposed-card"><h3><span>＋</span> The extension to build</h3><ul><li>A unified, live snapshot of the document <em>and</em> current workflow.</li><li>Discoverable, typed action inputs and results.</li><li>Stable scope, revision checks, async completion, and event subscriptions.</li><li>A local CLI/API/MCP bridge to the same operations.</li><li>Consistent validation, grants, and activity visible to you.</li><li>Adapters for toolkit controls and custom document views.</li></ul></article></div>
+  <div class="film-panel"><div><p class="eyebrow">REAL APPLICATION FOOTAGE</p><h3>One minute in the office suite.</h3><p>The original recording shows an actual edit, a budget recalculation and undo, a chart, slides, and a note checklist. It predates the proposed agent bridge.</p><p class="small-copy">The original audio has been replaced with ElevenLabs narration for this guide. Captions are included.</p></div><video id="office-film" controls playsinline preload="metadata" poster="assets/images/office-calc.webp"><source src="assets/video/office-tour.mp4" type="video/mp4"><track kind="captions" src="assets/video/office-tour.vtt" srclang="en" label="English" default></video></div>
+  <a class="download-link" href="assets/signal-garden-project.zip" download>↓ Download the fictional Signal Garden office files <span>Brief, budget, slides &amp; notes</span></a>
+  <details class="text-detail"><summary>What the existing AI editing path does</summary><p>The suite gives the model a readable snapshot and an operation guide. The model can return a fenced <code>qinda-edits</code> JSON block, which the application parses and applies through the document’s editing code. This supports providers that do not expose native tool calling. You see an edit summary and can undo.</p><p>That is already valuable. It is not yet a general external control endpoint. The new bridge would wrap the same document operations in a stable, typed contract and add live workflow state. Existing “CLI provider” support launches a model CLI for the built-in assistant; it does not itself give an outside CLI agent access to an open document.</p></details>
+</section>
+
+<section id="access" class="chapter" data-section="access">
+  <p class="eyebrow"><span class="chapter-number">04</span> TWO DOORS, ONE APPLICATION</p>
+  <h2>Talk inside the app.<br>Or work from your terminal.</h2>
+  <p class="section-lead">The document should behave the same whichever assistant you use. The model’s provider can change; the application remains responsible for the edit and the outcome.</p>
+  <div class="access-paths"><article><div class="path-icon">✦</div><h3>Built-in partner</h3><p>Select a paragraph or cell, open the assistant, and ask your question. The active window supplies the context you chose. Suggested changes and activity appear beside your work.</p><div class="chat-sample"><span>You</span><p>Try two lighting packages and tell me whether we still fit.</p><span>Partner</span><p>Done. Planned cost is $9,882—$1,282 above your ceiling. I changed B5; you can undo that edit.</p></div></article><article><div class="path-icon">&gt;_</div><h3>External agent</h3><p>Grant an agent access to a specific open document. It discovers the available operations, reads the current view, makes the authorized change, and reports the verified result.</p><div class="terminal-sample"><div>PROPOSED CLI · NOT AN INSTALLED COMMAND</div><pre><span>$</span> qinda-agent documents list
+<span>$</span> qinda-agent inspect --document budget
+<span>$</span> qinda-agent invoke --document budget \
+  --action calc.set_cells \
+  --args '{"cells":{"B5":"2"}}' \
+  --if-revision 12
+
+✓ B5 updated · revision 13
+  planned_cost: 9882 · over_ceiling: 1282</pre></div></article></div>
+  <div class="connection-strip"><span>Assistant panel / Codex / Claude Code / Kimi</span><b>→</b><span>Shared agent interface</span><b>→</b><span>QindaOffice document operations</span></div>
+  <div class="takeaway"><b>Why add MCP?</b><p>MCP gives compatible agents a standard way to discover tools and read resources. A CLI is convenient for shell workflows; an in-process API is convenient for the embedded assistant. All three should adapt the same service, so behavior and permissions do not drift.</p></div>
+  <details class="text-detail"><summary>What an external agent needs to connect</summary><p>A local service can listen on a user-owned Unix socket and exchange JSON-RPC messages. A small CLI can print JSON for scripting; an MCP adapter can expose snapshots as resources and actions as tools. Desktop permissions and explicit document grants govern what each client can access. MCP compatibility varies by client and configuration; a generic CLI can remain a fallback.</p><p>Remote access is an additional design choice, not required for the first version. The proposed first implementation stays local and connects to an already running application. It is different from <code>qtk-preview --dump-json</code>, which launches a separate QML scene for inspection.</p></details>
+</section>
+
+<section id="workflow" class="chapter" data-section="workflow">
+  <p class="eyebrow"><span class="chapter-number">05</span> A HUMAN DAY, WITH HELP</p>
+  <h2>Keep the context.<br>Lose the repetitive handoffs.</h2>
+  <p class="section-lead">Imagine finishing a planning meeting. Your notes, brief, budget, and presentation belong to one project. You choose which documents the partner can use, and it makes the handoffs legible.</p>
+  <div class="journey" id="journey"><div class="journey-tabs" role="tablist" aria-label="Project workflow"><button data-journey="0" role="tab" aria-selected="true"><span>1</span> Capture</button><button data-journey="1" role="tab" aria-selected="false"><span>2</span> Clarify</button><button data-journey="2" role="tab" aria-selected="false"><span>3</span> Check</button><button data-journey="3" role="tab" aria-selected="false"><span>4</span> Present</button></div><div id="journey-content"></div><div class="journey-footer"><span class="pill proposed">Illustrative future cross-app workflow</span><button class="secondary" id="journey-next">Next handoff →</button></div></div>
+  <div class="human-scenes"><article><h3>Before the meeting</h3><p>“Explain what changed in this budget.” The partner reads cell inputs, formula results, and the selected sheet. It cites cells and distinguishes a saved value from your uncommitted draft.</p></article><article><h3>During the meeting</h3><p>“Turn these notes into decisions and open questions.” The existing live-notes pipeline already combines transcription and model decisions. A shared interface could expose accepted notes and task proposals to your other tools.</p></article><article><h3>After the meeting</h3><p>“Update the approval slide from the revised brief.” The partner proposes changes tied to the source documents. Each document gets its own result and undo; a future multi-document transaction requires additional design.</p></article></div>
+  <details class="text-detail"><summary>What should it do when information is missing?</summary><p>If a note says “increase the allowance” without a number, the partner should ask for the missing amount. If you selected a filtered table, it should report that scope. If it cannot read the referenced document, it should ask you to share it. Model fluency does not turn an assumption into a document fact.</p></details>
+</section>
+
+<section id="architecture" class="chapter" data-section="architecture">
+  <p class="eyebrow"><span class="chapter-number">06</span> INSIDE THE TOOLKIT</p>
+  <h2>A shared service.<br>Many ways to work together.</h2>
+  <p class="section-lead">Build the contract into the toolkit, then let applications contribute their document semantics. Click a part of the diagram to see its job.</p>
+  <div class="architecture-diagram"><div class="diagram-clients"><button data-node="human" class="diagram-node"><span>YOU</span><b>Native interface</b><small>Selection, controls, feedback</small></button><button data-node="models" class="diagram-node"><span>THE PARTNER</span><b>Assistant / CLI / MCP</b><small>Language and planning</small></button></div><div class="diagram-connectors" aria-hidden="true"><i></i><span>shared context + actions</span><i></i></div><button data-node="host" class="diagram-node host-node selected"><span>PROPOSED · Tk.AgentHost</span><b>Live state · typed actions · events · grants</b><small>One contract, in the application process</small></button><div class="diagram-connectors" aria-hidden="true"><i></i><span>adapters, not a second document model</span><i></i></div><div class="diagram-foundation"><button data-node="toolkit" class="diagram-node"><span>QINDATK TODAY</span><b>Controls &amp; semantic views</b><small>Accessibility · commands · selection</small></button><button data-node="office" class="diagram-node"><span>QINDAOFFICE TODAY</span><b>Document editing engines</b><small>Snapshots · operations · undo</small></button></div><div id="node-description" class="node-description"></div></div>
+  <div class="model-roles"><article><span class="role-mark">J</span><div><h3>Jev: a focused decision</h3><p>Choose among known next steps, classify a situation, or gate a larger model call. Supply explicit choices and current structured state. Your live-notes code already uses this pattern.</p></div></article><article><span class="role-mark">✦</span><div><h3>Larger model: language &amp; planning</h3><p>Understand your request, break a task into steps, resolve ambiguity with you, and explain outcomes. It can propose a valid action; the app decides whether that action can run.</p></div></article><article><span class="role-mark">✓</span><div><h3>Application: the authority</h3><p>Validate targets and values, apply changes, calculate formulas, enforce permissions, maintain undo, and return exact results. A model’s confidence is not a success receipt.</p></div></article></div>
+  <details class="text-detail"><summary>What toolkit authors and application authors each implement</summary><p><b>Toolkit:</b> an attached semantic descriptor for standard controls; stable IDs and scopes; typed action schemas; snapshot and event infrastructure; local transport adapters; permission, revision, request, and result handling. Existing accessibility and command machinery supply much of the foundation.</p><p><b>Application:</b> a provider for domain state and operations. Calc describes sheets, cells and formula results; Write describes ranges and paragraphs; Show describes slides and objects; Note describes pages and blocks. Custom charts, timelines, canvases, and virtualized views contribute domain providers rather than exposing every visual child.</p><p><b>Integration:</b> retain QindaOffice’s per-window ownership and existing action IDs. Adapt <code>ActionModel</code> and <code>DocumentTools</code> to the shared contract. Enrich the current operation guide with formal input/output schemas and route both human and agent actions through the same editing code.</p></details>
+</section>
+
+<section id="control" class="chapter" data-section="control">
+  <p class="eyebrow"><span class="chapter-number">07</span> COLLABORATION, WITHOUT SURPRISES</p>
+  <h2>You keep working.<br>The agent keeps checking.</h2>
+  <p class="section-lead">A partner must handle the fact that you are still using the application. Try a few failures: the app should explain them, preserve your work, and offer a useful next step.</p>
+  <div class="guard-lab"><div class="guard-options" role="group" aria-label="Collaboration challenges"><button data-guard="stale" class="selected">You edit during its turn</button><button data-guard="readonly">Read-only access</button><button data-guard="invalid">Invalid value</button><button data-guard="duplicate">A request is retried</button></div><div id="guard-scene"></div><div class="guard-actions"><button id="run-guard" class="primary">Play this situation →</button><button id="reset-guard" class="text-button">Reset</button><span class="pill proposed">Proposed contract simulation</span></div></div>
+  <div class="explain-grid compact"><article><h3>Visible activity</h3><p>Highlight changed targets and show an action log. Give long-running work progress and a Stop control. Cancellation prevents later steps; it cannot erase an already completed external effect.</p></article><article><h3>Explicit scope</h3><p>Grant read or edit access to chosen documents. A local connection is not unlimited authority. Sending document context to a hosted model is a separate choice from using a local model.</p></article><article><h3>Honest undo</h3><p>Normal document edits use the document’s undo stack. A first release can group edits within one document. Sending a message or exporting elsewhere needs its own consequence and permission rules.</p></article><article><h3>Data stays data</h3><p>Text inside a document can describe work, but should not grant access or become an instruction that overrides you. The app enforces the action boundary regardless of what the model proposes.</p></article></div>
+</section>
+
+<section id="roadmap" class="chapter" data-section="roadmap">
+  <p class="eyebrow"><span class="chapter-number">08</span> HOW FAR AWAY ARE WE?</p>
+  <h2>Close to a convincing slice.<br>More work for a dependable platform.</h2>
+  <p class="section-lead">This is an integration project with a substantial head start. Your office suite provides better starting points than a generic screenshot-driven app: the document operations already exist.</p>
+  <div class="roadmap"><article><div class="milestone"><span>1</span><b>Prove one workflow</b><small>Roughly 1–2 weeks</small></div><div><h3>One open Calc document, end to end.</h3><p>Expose active sheet, selection, values, formulas and revision. Describe <code>set_cells</code> and undo. Connect one embedded client and one local CLI client. Verify the receipt against the app’s recalculated state.</p><p class="done-condition">Done means: read → edit → recalculate → explain → undo, with a stale-edit test and a visible activity log.</p></div></article><article><div class="milestone"><span>2</span><b>Make it reusable</b><small>Roughly 4–8 weeks total</small></div><div><h3>A Linux toolkit service plus office adapters.</h3><p>Add formal schemas, per-window scope, event subscriptions, asynchronous task results, edit grants, server-side validation, request deduplication, and local CLI/MCP adapters. Start coverage for Write, Show and Note through their current tools.</p><p class="done-condition">Done means: the same client contract works across the first supported apps, with tests for failure and concurrent human edits.</p></div></article><article><div class="milestone"><span>3</span><b>Grow the coverage</b><small>Further months, by scope</small></div><div><h3>Complex views and broader workflows.</h3><p>Cover charts, rich formatting, canvas objects, large virtualized data, and app-specific operations. Design multi-document coordination, provenance and recovery. Add other operating systems and remote access only where useful.</p><p class="done-condition">Done means: measured task coverage and dependable recovery, rather than a claim that every application action is exposed.</p></div></article></div>
+  <p class="estimate-note">Planning estimates for one experienced Qt developer, assuming the current document tools can be reused. These are rough engineering estimates, not measured delivery dates; deep formatting fidelity and cross-app coordination expand the scope.</p>
+  <div class="recommendation"><p class="eyebrow">THE BEST FIRST MOVE</p><h3>Make QindaCalc the vertical slice.<br>Then lift the bridge into QindaTK.</h3><p>The budget scenario has exact values, a visible calculation, a clear target, and meaningful undo. It proves the human experience and the protocol together. Write, Show and Note can then adopt the contract through the editing seams they already have.</p><a href="#try" class="primary">Try the experience again →</a></div>
+</section>
+
+<section id="sources" class="chapter sources">
+  <p class="eyebrow">EVIDENCE &amp; CREDITS</p><h2>What this guide is based on.</h2>
+  <p>The source review reflects QindaTK <code>becfc7d</code> and QindaOffice <code>a89bb2a</code> on September 29, 2026. Local, uncommitted office experiments are excluded from the “already implemented” claims. <code>Tk.AgentHost</code>, <code>qinda-agent</code>, typed receipts, and the cross-app journey are proposed designs.</p>
+  <div class="source-columns"><div><h3>Repository evidence</h3><ul><li>QindaTK: <code>AccessibilityAdapter</code>, <code>CommandRegistry</code>, document/selection/validation/transaction services, <code>ScriptRuntime</code>, and preview dump tools.</li><li>QindaOffice: <code>libs/office_ai/src/document_tools.*</code>, <code>assistant_controller.*</code>, <code>system_one_client.*</code>, and each app’s <code>*_tools.cpp</code>.</li><li>Window commands: <code>libs/office_quick/src/action_model.h</code>; suite decision D-058 describes assistant editing.</li><li>A real desktop AT-SPI probe read custom semantic nodes and invoked an action that changed a fixture value and created an undo step.</li></ul></div><div><h3>Primary references</h3><ul><li><a href="https://doc.qt.io/qt-6/qml-qtquick-accessible.html" target="_blank" rel="noopener">Qt Quick Accessible API ↗</a></li><li><a href="https://modelcontextprotocol.io/specification/2025-11-25/server/tools" target="_blank" rel="noopener">MCP tool contract ↗</a> · <a href="https://modelcontextprotocol.io/specification/2025-11-25/server/resources" target="_blank" rel="noopener">resources ↗</a></li><li><a href="https://docs.typesafe.ai/primitives/choice" target="_blank" rel="noopener">Jev / TypeSafe Choice decisions ↗</a></li><li><a href="https://elevenlabs.io/docs/api-reference/text-to-speech/convert" target="_blank" rel="noopener">ElevenLabs speech generation ↗</a></li><li><a href="sources.md">Full source notes &amp; media provenance ↗</a></li></ul></div></div>
+  <p class="small-copy">Narration: ElevenLabs Iago; scenario outcomes: ElevenLabs Brian. Real screenshot and film assets come from the QindaQt desktop showcase and use public fictional sample documents. New guide code is LGPL-3.0-or-later; reused showcase media retain their GPL-3.0-or-later provenance.</p>
+</section>
+<footer><span>QindaTK · Built for a human and an AI partner.</span><a href="#try">Back to the lab ↑</a></footer>
+</main>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
+<noscript><div class="noscript">This guide’s explanations and real footage work without JavaScript. Enable JavaScript to use the simulations and narrated chapter controls.</div></noscript>
+</body>
+</html>
